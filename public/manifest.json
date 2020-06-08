@@ -13,9 +13,9 @@
       "sizes": "128x128"
     },
     {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "img/hotel.jpg",
+      "type": "image/jpg",
+      "sizes": "4032x3024"
     }
   ],
   "start_url": ".",
