@@ -3,8 +3,6 @@ import ReactDOM from "react-dom";
 import { screen } from "@testing-library/dom";
 import Init from "../Init";
 
-test("start tests", () => {});
-
 test("test that splash screen is disabled after app initialization process", () => {
   // splash screen emulation
   const splashDiv =
