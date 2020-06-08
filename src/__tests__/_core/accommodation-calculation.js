@@ -20,42 +20,33 @@ test("calculate optimal accommodation", () => {
     premiumTotalPrice: 738
   });
 
-  // // test 2 => 5, 7
-  // expect(
-  //   calculateOptimalAccommodation(GUESTS_PRICES, {
-  //     economyRoomsCount: 5,
-  //     premiumRoomsCount: 7,
-  //   })
-  // ).toStrictEqual({
-  //   economyUsage: 4,
-  //   economyTotalPrice: 189,
-  //   premiumUsage: 6,
-  //   premiumTotalPrice: 1054
-  // });
+  // test 2 => 5, 7
+  expect(
+    calculateOptimalAccommodation(GUESTS_PRICES, 5, 7)
+  ).toStrictEqual({
+    economyUsage: 4,
+    economyTotalPrice: 189,
+    premiumUsage: 6,
+    premiumTotalPrice: 1054
+  });
 
-  // // test 3 => 7, 2
-  //  expect(
-  //   calculateOptimalAccommodation(GUESTS_PRICES, {
-  //     economyRoomsCount: 7,
-  //     premiumRoomsCount: 2,
-  //   })
-  // ).toStrictEqual({
-  //   economyUsage: 4,
-  //   economyTotalPrice: 189,
-  //   premiumUsage: 2,
-  //   premiumTotalPrice: 583
-  // });
+  // test 3 => 7, 2
+   expect(
+    calculateOptimalAccommodation(GUESTS_PRICES, 7, 2)
+  ).toStrictEqual({
+    economyUsage: 4,
+    economyTotalPrice: 189,
+    premiumUsage: 2,
+    premiumTotalPrice: 583
+  });
 
-  // // test 4 => 1, 7
-  // expect(
-  //   calculateOptimalAccommodation(GUESTS_PRICES, {
-  //     economyRoomsCount: 1,
-  //     premiumRoomsCount: 7,
-  //   })
-  // ).toStrictEqual({
-  //   economyUsage: 1,
-  //   economyTotalPrice: 45,
-  //   premiumUsage: 7,
-  //   premiumTotalPrice: 1153
-  // });
+  // test 4 => 1, 7
+  expect(
+    calculateOptimalAccommodation(GUESTS_PRICES, 1, 7)
+  ).toStrictEqual({
+    economyUsage: 1,
+    economyTotalPrice: 45,
+    premiumUsage: 7,
+    premiumTotalPrice: 1153
+  });
 });

@@ -21,13 +21,13 @@ export function calculateOptimalAccommodation(
     return getAccommodationResults({});
   }
 
-  //
   const sortedByDescendingGuestsPrices = guestsPrices.sort((a, b) => b - a);
   // create dictionary
   const accommodation = {};
   Object.values(GUESTS_TYPES).forEach((type) => (accommodation[type] = []));
 
   const availability = {
+    isEnoughEconomy: sortedByDescendingGuestsPrices.filter(el => el < 100).length <= economyRoomsCount,
     economyRoomsCount,
     premiumRoomsCount,
   };
@@ -35,7 +35,6 @@ export function calculateOptimalAccommodation(
     const guest = calculateGuestTypeWithPriceAndStatus(el, availability);
     accommodation[guest.type].push(guest);
   });
-
   return getAccommodationResults(accommodation);
 }
 
@@ -85,6 +84,7 @@ function getAccommodationResults(accommodation) {
  * @param  {number} guestPrice
  *         Guest price
  * @param  {Object} availability
+ *         isEnoughEconomy: boolean
  *         Rooms availability of the economyRoomsCount: number and premiumRoomsCount: number
  *         !!! Availability object properties can be changed during function execution
  * @returns {Object} result - Calculated guest
@@ -95,6 +95,7 @@ function getAccommodationResults(accommodation) {
 function calculateGuestTypeWithPriceAndStatus(
   guestPrice = 0,
   availability = {
+    isEnoughEconomy: true,
     economyRoomsCount: 0,
     premiumRoomsCount: 0,
   }
@@ -116,20 +117,20 @@ function calculateGuestTypeWithPriceAndStatus(
     };
   }
 
+  // The guest is 'economy', economy room isn't available and premium room is available
+  if (guestPrice < 100 && availability.premiumRoomsCount && !availability.isEnoughEconomy) {
+    availability.premiumRoomsCount--;
+    return {
+      type: GUESTS_TYPES.economInPremium,
+      price: guestPrice,
+    };
+  }
+
   // The guest is 'economy' and economy room is available
   if (availability.economyRoomsCount) {
     availability.economyRoomsCount--;
     return {
       type: GUESTS_TYPES.economy,
-      price: guestPrice,
-    };
-  }
-
-  // The guest is 'economy', economy room isn't available and premium room is available
-  if (!availability.economyRoomsCount && availability.premiumRoomsCount) {
-    availability.premiumRoomsCount--;
-    return {
-      type: GUESTS_TYPES.economInPremium,
       price: guestPrice,
     };
   }
