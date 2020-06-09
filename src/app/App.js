@@ -7,7 +7,7 @@ function App({loading = true}) {
       <h1 className="main__title text-center">Room occupancy</h1>
       <h2 className="main__subtitle text-center">The optimal guests accommodation</h2>
 
-      <div className={clsx({"content-loading": loading})} title="content">
+      <div className={clsx({"content-loading": loading})} role="main">
         Content
       </div>
     </div>

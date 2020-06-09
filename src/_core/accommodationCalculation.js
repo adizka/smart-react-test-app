@@ -27,7 +27,9 @@ export function calculateOptimalAccommodation(
   Object.values(GUESTS_TYPES).forEach((type) => (accommodation[type] = []));
 
   const availability = {
-    isEnoughEconomy: sortedByDescendingGuestsPrices.filter(el => el < 100).length <= economyRoomsCount,
+    isEnoughEconomy:
+      sortedByDescendingGuestsPrices.filter((el) => el < 100).length <=
+      economyRoomsCount,
     economyRoomsCount,
     premiumRoomsCount,
   };
@@ -118,7 +120,11 @@ function calculateGuestTypeWithPriceAndStatus(
   }
 
   // The guest is 'economy', economy room isn't available and premium room is available
-  if (guestPrice < 100 && availability.premiumRoomsCount && !availability.isEnoughEconomy) {
+  if (
+    guestPrice < 100 &&
+    availability.premiumRoomsCount &&
+    !availability.isEnoughEconomy
+  ) {
     availability.premiumRoomsCount--;
     return {
       type: GUESTS_TYPES.economInPremium,

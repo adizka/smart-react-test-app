@@ -1,12 +1,12 @@
 import React from "react";
-import {render} from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import App from "../app/App";
 
 function renderApp() {
-  const {getByText, getByTitle, rerender} = render(<App />);
+  const {getByText, getByRole, rerender} = render(<App />);
   return {
     getByText,
-    getByTitle,
+    getByRole,
     rerender
   }
 }
@@ -18,10 +18,10 @@ test("render headings in App", () => {
 });
 
 test("check loading", () => {
-  const roleValue = "content";
+  const roleValue = "main";
   const loadingCssClassName = "content-loading";
-  const {getByTitle, rerender} = renderApp();
-  expect(getByTitle(roleValue)).toHaveClass(loadingCssClassName);
+  const {getByRole, rerender} = renderApp();
+  expect(getByRole(roleValue)).toHaveClass(loadingCssClassName);
   rerender(<App loading={false} />);
-  expect(getByTitle(roleValue)).not.toHaveClass(loadingCssClassName);
+  expect(getByRole(roleValue)).not.toHaveClass(loadingCssClassName);
 });
