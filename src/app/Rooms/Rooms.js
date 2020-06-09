@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { convertPositiveInteger } from "../../_helpers/TypeConvertion";
 
-export function Rooms() {
-  const [economyRoomsCount, setEconomyRoomsCount] = useState(0);
-  const [premiumRoomsCount, setPremiumRoomsCount] = useState(0);
-
+export function Rooms({
+  economyRoomsCount,
+  setEconomyRoomsCount,
+  premiumRoomsCount,
+  setPremiumRoomsCount,
+}) {
   const handleEconomyRoomsCountChange = (event) => {
     const val = convertPositiveInteger(event.target.value, economyRoomsCount);
     setEconomyRoomsCount(val);

@@ -1,18 +1,23 @@
 import React from "react";
-import {render} from '@testing-library/react';
+import { render } from "@testing-library/react";
+import { AppProvider } from "../app/AppContext";
 import App from "../app/App";
 
 function renderApp() {
-  const {getByText, getByRole, rerender} = render(<App />);
+  const { getByText, getByRole, rerender } = render(
+    <AppProvider>
+      <App />
+    </AppProvider>
+  );
   return {
     getByText,
     getByRole,
-    rerender
+    rerender,
   };
 }
 
 test("render headings in App", () => {
-  const {getByText} = renderApp();
+  const { getByText } = renderApp();
   expect(getByText(/room occupancy/i)).toBeInTheDocument();
   expect(getByText(/the optimal guests accommodation/i)).toBeInTheDocument();
 });
@@ -20,8 +25,12 @@ test("render headings in App", () => {
 test("check loading", () => {
   const roleValue = "main";
   const loadingCssClassName = "content-loading";
-  const {getByRole, rerender} = renderApp();
+  const { getByRole, rerender } = renderApp();
   expect(getByRole(roleValue)).not.toHaveClass(loadingCssClassName);
-  rerender(<App loading={true} />);
+  rerender(
+    <AppProvider>
+      <App loading={true} />
+    </AppProvider>
+  );
   expect(getByRole(roleValue)).toHaveClass(loadingCssClassName);
 });

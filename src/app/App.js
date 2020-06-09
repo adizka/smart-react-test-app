@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from "clsx";
-import {Rooms} from "./Rooms/Rooms";
-import {Totals} from "./Totals/Totals";
+import {RoomsWrapper} from "./Rooms/RoomsWrapper";
+import {TotalsWrapper} from "./Totals/TotalsWrapper";
 
 function App({loading = false}) {
   return (
@@ -9,9 +9,9 @@ function App({loading = false}) {
       <h1 className="main__title text-center">Room occupancy</h1>
       <h2 className="main__subtitle text-center">The optimal guests accommodation</h2>
       <div className={clsx({"content-loading": loading})} role="main">
-        <Rooms />
+        <RoomsWrapper />
         <div className="room__content">
-          <Totals economyTotal={189} premiumTotal={1054} />
+          <TotalsWrapper />
         </div>
       </div>
     </div>

@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import user from "@testing-library/user-event";
 import { render } from "@testing-library/react";
 import { Rooms } from "../app/Rooms/Rooms";
 
+function Wrapper() {
+  const [economyRoomsCount, setEconomyRoomsCount] = useState(2);
+  const [premiumRoomsCount, setPremiumRoomsCount] = useState(7);
+  const params = {
+    economyRoomsCount,
+    setEconomyRoomsCount,
+    premiumRoomsCount,
+    setPremiumRoomsCount,
+  };
+  return <Rooms {...params} />;
+}
+
 function renderRooms() {
-  const { getByLabelText, rerender, getAllByRole } = render(<Rooms />);
+  const { getByLabelText, getAllByRole } = render(<Wrapper />);
   return {
     getByLabelText,
-    rerender,
     getAllByRole,
   };
 }
 
 test("renders headings", () => {
-  const { getAllByRole } = renderRooms(<Rooms />);
+  const { getAllByRole } = renderRooms();
   expect(getAllByRole("columnheader")[0]).toHaveTextContent(/economy/i);
   expect(getAllByRole("columnheader")[1]).toHaveTextContent(/premium/i);
 });
 
 test("entering economy rooms count", () => {
-  const { getByLabelText } = renderRooms(<Rooms />);
+  const { getByLabelText } = renderRooms();
 
   // Check economy rooms count inputs
   const economyRoomsCountInput = getByLabelText(
