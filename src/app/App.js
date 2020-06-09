@@ -1,7 +1,6 @@
 import React from 'react';
 import clsx from "clsx";
 import {Rooms} from "./Rooms/Rooms";
-import {Guests} from "./Guests/Guests";
 import {Totals} from "./Totals/Totals";
 
 function App({loading = false}) {
@@ -12,8 +11,7 @@ function App({loading = false}) {
       <div className={clsx({"content-loading": loading})} role="main">
         <Rooms />
         <div className="room__content">
-          <Guests />
-          <Totals />
+          <Totals economyTotal={189} premiumTotal={1054} />
         </div>
       </div>
     </div>
