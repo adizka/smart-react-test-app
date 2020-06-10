@@ -3,7 +3,7 @@ import { calculateOptimalAccommodation } from "../_core/accommodationCalculation
 import { GUESTS_PRICES } from "../_core/consts";
 
 const init = {
-  economyRoomsCount: 2,
+  economyRoomsCount: 1,
   premiumRoomsCount: 7,
   results: {},
 };

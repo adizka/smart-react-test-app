@@ -137,10 +137,17 @@ body {
     background-color: $violet;
   }
 
+  &-disabled {
+    background-color: $grey;
+  }
+
   &-total {
     background-color: $green;
   }
 
+  &-ecopremium {
+    background: linear-gradient(90deg, $red-100 86%, $violet 14%);
+  }
 
   &-lg {
     padding: 6px 20px;
@@ -151,8 +158,21 @@ body {
 
 .box {
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   margin-top: 15px;
+
+  h5 {
+    margin-top: 0;
+    padding-left: 10px;
+    font-size: 16px;
+    color: $grey;
+  }
+
+  &>div {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
   .badge {
     display: table;

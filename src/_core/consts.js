@@ -8,3 +8,5 @@ export const GUESTS_TYPES = {
   premiumDisabled: "premium-disabled",
   economInPremium: "ecopremium",
 };
+
+export const MIN_PREMIUM_PRICE = 100;

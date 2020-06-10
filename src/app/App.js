@@ -1,6 +1,7 @@
 import React from 'react';
 import clsx from "clsx";
 import {RoomsWrapper} from "./Rooms/RoomsWrapper";
+import {GuestsWrapper} from "./Guests/GuestsWrapper";
 import {TotalsWrapper} from "./Totals/TotalsWrapper";
 
 function App({loading = false}) {
@@ -11,6 +12,7 @@ function App({loading = false}) {
       <div className={clsx({"content-loading": loading})} role="main">
         <RoomsWrapper />
         <div className="room__content">
+          <GuestsWrapper />
           <TotalsWrapper />
         </div>
       </div>
