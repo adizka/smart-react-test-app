@@ -1,11 +1,8 @@
 import React from "react";
 import App from "./App";
-import { AppContext } from "./AppContext";
+import { useAppContext } from "./AppContext";
 
 export function AppWrapper() {
-  return (
-    <AppContext.Consumer>
-      {(value) => <App loading={value.loading} />}
-    </AppContext.Consumer>
-  );
+  const { loading } = useAppContext();
+  return <App loading={loading} />;
 }

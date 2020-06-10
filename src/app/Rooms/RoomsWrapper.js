@@ -1,18 +1,20 @@
 import React from "react";
 import { Rooms } from "./Rooms";
-import { AppContext } from "../AppContext";
+import { useAppContext } from "../AppContext";
 
 export function RoomsWrapper() {
+  const {
+    economyRoomsCount,
+    setEconomyRoomsCount,
+    premiumRoomsCount,
+    setPremiumRoomsCount,
+  } = useAppContext();
   return (
-    <AppContext.Consumer>
-      {(value) => (
-        <Rooms
-          economyRoomsCount={value.economyRoomsCount}
-          setEconomyRoomsCount={value.setEconomyRoomsCount}
-          premiumRoomsCount={value.premiumRoomsCount}
-          setPremiumRoomsCount={value.setPremiumRoomsCount}
-        />
-      )}
-    </AppContext.Consumer>
+    <Rooms
+      economyRoomsCount={economyRoomsCount}
+      setEconomyRoomsCount={setEconomyRoomsCount}
+      premiumRoomsCount={premiumRoomsCount}
+      setPremiumRoomsCount={setPremiumRoomsCount}
+    />
   );
 }

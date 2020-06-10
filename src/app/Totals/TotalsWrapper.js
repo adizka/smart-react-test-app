@@ -1,16 +1,13 @@
 import React from "react";
 import { Totals } from "./Totals";
-import { AppContext } from "../AppContext";
+import { useAppContext } from "../AppContext";
 
 export function TotalsWrapper() {
+  const { results } = useAppContext();
   return (
-    <AppContext.Consumer>
-      {(value) => (
-        <Totals
-          economyTotal={value.results.economyTotalPrice}
-          premiumTotal={value.results.premiumTotalPrice}
-        />
-      )}
-    </AppContext.Consumer>
+    <Totals
+      economyTotal={results.economyTotalPrice}
+      premiumTotal={results.premiumTotalPrice}
+    />
   );
 }

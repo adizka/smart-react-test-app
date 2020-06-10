@@ -1,4 +1,10 @@
-import React, { createContext, useMemo, useState, useEffect } from "react";
+import React, {
+  createContext,
+  useMemo,
+  useState,
+  useEffect,
+  useContext,
+} from "react";
 import { calculateOptimalAccommodation } from "../_core/accommodationCalculation";
 import { fetchData } from "../_core/guestsPricesServise";
 
@@ -10,6 +16,9 @@ const init = {
 };
 
 const AppContext = createContext();
+const useAppContext = () => {
+  return useContext(AppContext);
+};
 
 const AppProvider = ({ children, value = init }) => {
   const [guestsData, setGuestsData] = useState({ loading: true, value: [] });
@@ -59,4 +68,4 @@ const AppProvider = ({ children, value = init }) => {
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;
 };
 
-export { AppContext, AppProvider };
+export { AppContext, AppProvider, useAppContext };

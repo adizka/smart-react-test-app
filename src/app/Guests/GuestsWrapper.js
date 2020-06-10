@@ -1,11 +1,8 @@
 import React from "react";
 import { Guests } from "./Guests";
-import { AppContext } from "../AppContext";
+import { useAppContext } from "../AppContext";
 
 export function GuestsWrapper() {
-  return (
-    <AppContext.Consumer>
-      {(value) => <Guests accommodation={value.results.accommodation} />}
-    </AppContext.Consumer>
-  );
+  const { results } = useAppContext();
+  return <Guests accommodation={results.accommodation} />;
 }
