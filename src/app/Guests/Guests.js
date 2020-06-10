@@ -1,8 +1,11 @@
 import React from "react";
 import { GuestsList } from "./GuestsList";
 import { GUESTS_TYPES } from "../../_core/consts";
+import { useAppContext } from "../AppContext";
 
-export function Guests({ accommodation }) {
+export function Guests() {
+  const { results } = useAppContext();
+  const { accommodation } = results;
   return (
     <>
       {!accommodation && <></>}

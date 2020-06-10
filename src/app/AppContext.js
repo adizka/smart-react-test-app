@@ -6,13 +6,13 @@ import React, {
   useContext,
 } from "react";
 import { calculateOptimalAccommodation } from "../_core/accommodationCalculation";
-import { fetchData } from "../_core/guestsPricesServise";
+import { fetchData } from "../_core/guestsPricesServiсe";
 
 const init = {
   economyRoomsCount: 1,
   premiumRoomsCount: 7,
   results: {},
-  loading: false,
+  loading: true,
 };
 
 const AppContext = createContext();
@@ -21,7 +21,8 @@ const useAppContext = () => {
 };
 
 const AppProvider = ({ children, value = init }) => {
-  const [guestsData, setGuestsData] = useState({ loading: true, value: [] });
+  const [loading, setLoading] = useState(value.loading);
+  const [prices, setPrices] = useState([]);
   const [economyRoomsCount, setEconomyRoomsCount] = useState(
     value.economyRoomsCount
   );
@@ -31,11 +32,11 @@ const AppProvider = ({ children, value = init }) => {
 
   const results = useMemo(() => {
     return calculateOptimalAccommodation(
-      guestsData.value,
+      prices,
       economyRoomsCount,
       premiumRoomsCount
     );
-  }, [guestsData.value, economyRoomsCount, premiumRoomsCount]);
+  }, [prices, economyRoomsCount, premiumRoomsCount]);
 
   const ctx = useMemo(() => {
     return {
@@ -44,7 +45,7 @@ const AppProvider = ({ children, value = init }) => {
       premiumRoomsCount,
       setPremiumRoomsCount,
       results,
-      loading: guestsData.loading,
+      loading,
     };
   }, [
     economyRoomsCount,
@@ -52,17 +53,21 @@ const AppProvider = ({ children, value = init }) => {
     premiumRoomsCount,
     setPremiumRoomsCount,
     results,
-    guestsData.loading,
+    loading,
   ]);
 
   // Load guests prices from server
   useEffect(() => {
+    let current = true;
     fetchData((data) => {
-      setGuestsData({
-        loading: false,
-        value: data.guestsPrices,
-      });
+      if (current) {
+        setLoading(false);
+        setPrices(data.guestsPrices);
+      }
     });
+    return () => {
+      current = false;
+    };
   }, []);
 
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;

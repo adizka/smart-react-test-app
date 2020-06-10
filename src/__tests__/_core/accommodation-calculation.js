@@ -1,77 +1,35 @@
 import { GUESTS_PRICES } from "../../_core/consts";
 import { calculateOptimalAccommodation } from "../../_core/accommodationCalculation";
 
-function prepareResultForTestAfterCalculation(
-  guestsPrices,
-  economyRoomsCount,
-  premiumRoomsCount
-) {
-  const {
+test.each`
+  economyRoomsCount | premiumRoomsCount | economyUsage | economyTotalPrice | premiumUsage | premiumTotalPrice
+  ${0}              | ${0}              | ${0}         | ${0}              | ${0}         | ${0}
+  ${3}              | ${3}              | ${3}         | ${167}            | ${3}         | ${738}
+  ${5}              | ${7}              | ${4}         | ${189}            | ${6}         | ${1054}
+  ${7}              | ${2}              | ${4}         | ${189}            | ${2}         | ${583}
+  ${1}              | ${7}              | ${1}         | ${45}             | ${7}         | ${1153}
+`(
+  "calculate optimal accommodation ($economyRoomsCount, $premiumRoomsCount)",
+  ({
     economyUsage,
     economyTotalPrice,
     premiumUsage,
     premiumTotalPrice,
-  } = calculateOptimalAccommodation(
-    guestsPrices,
     economyRoomsCount,
-    premiumRoomsCount
-  );
-  return {
-    economyUsage,
-    economyTotalPrice,
-    premiumUsage,
-    premiumTotalPrice,
-  };
-}
-
-test("calculate optimal accommodation", () => {
-  // test 0 => 0, 0
-  expect(
-    prepareResultForTestAfterCalculation(GUESTS_PRICES, 0, 0)
-  ).toStrictEqual({
-    economyUsage: 0,
-    economyTotalPrice: 0,
-    premiumUsage: 0,
-    premiumTotalPrice: 0,
-  });
-
-  // test 1 => 3, 3
-  expect(
-    prepareResultForTestAfterCalculation(GUESTS_PRICES, 3, 3)
-  ).toStrictEqual({
-    economyUsage: 3,
-    economyTotalPrice: 167,
-    premiumUsage: 3,
-    premiumTotalPrice: 738,
-  });
-
-  // test 2 => 5, 7
-  expect(
-    prepareResultForTestAfterCalculation(GUESTS_PRICES, 5, 7)
-  ).toStrictEqual({
-    economyUsage: 4,
-    economyTotalPrice: 189,
-    premiumUsage: 6,
-    premiumTotalPrice: 1054,
-  });
-
-  // test 3 => 7, 2
-  expect(
-    prepareResultForTestAfterCalculation(GUESTS_PRICES, 7, 2)
-  ).toStrictEqual({
-    economyUsage: 4,
-    economyTotalPrice: 189,
-    premiumUsage: 2,
-    premiumTotalPrice: 583,
-  });
-
-  // test 4 => 1, 7
-  expect(
-    prepareResultForTestAfterCalculation(GUESTS_PRICES, 1, 7)
-  ).toStrictEqual({
-    economyUsage: 1,
-    economyTotalPrice: 45,
-    premiumUsage: 7,
-    premiumTotalPrice: 1153,
-  });
-});
+    premiumRoomsCount,
+  }) => {
+    expect(
+      calculateOptimalAccommodation(
+        GUESTS_PRICES,
+        economyRoomsCount,
+        premiumRoomsCount
+      )
+    ).toEqual({
+      accommodation: expect.any(Object),
+      economyUsage,
+      economyTotalPrice,
+      premiumUsage,
+      premiumTotalPrice,
+    });
+  }
+);

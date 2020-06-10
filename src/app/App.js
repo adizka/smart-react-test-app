@@ -1,10 +1,12 @@
 import React from 'react';
 import clsx from "clsx";
 import {RoomsWrapper} from "./Rooms/RoomsWrapper";
-import {GuestsWrapper} from "./Guests/GuestsWrapper";
+import {Guests} from "./Guests/Guests";
 import {TotalsWrapper} from "./Totals/TotalsWrapper";
+import {useAppContext} from "./AppContext";
 
-function App({loading = false}) {
+function App() {
+  const {loading} = useAppContext();
   return (
     <div className="container position-relative">
       <h1 className="main__title text-center">Room occupancy</h1>
@@ -12,7 +14,7 @@ function App({loading = false}) {
       <div className={clsx({"content-loading": loading})} role="main">
         <RoomsWrapper />
         <div className="room__content">
-          <GuestsWrapper />
+          <Guests />
           <TotalsWrapper />
         </div>
       </div>
