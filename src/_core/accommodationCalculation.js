@@ -20,10 +20,10 @@ export function calculateOptimalAccommodation(
   const accommodation = {};
   Object.values(GUESTS_TYPES).forEach((type) => (accommodation[type] = []));
   
-  // 0, 0
-  if (economyRoomsCount === 0 && premiumRoomsCount === 0) {
-    return getAccommodationResults(accommodation);
-  }
+  // // 0, 0
+  // if (economyRoomsCount === 0 && premiumRoomsCount === 0) {
+  //   return getAccommodationResults(accommodation);
+  // }
 
   const sortedByDescendingGuestsPrices = guestsPrices.sort((a, b) => b - a);
 
