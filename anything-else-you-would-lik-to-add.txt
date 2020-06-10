@@ -1,0 +1,7 @@
+1) Would be great to HTML make-up for mobile view
+2) Would rewrite everything using TypeScript, with Strong Static Typing
+3) With TypeScript, we would be able to up abstraction level for some core types. For example, would add 'RoomType' interface, cause rooms could be not only Premium/Economy but VIP/Elit/President/Lux and so on.
+4) Right now we able to count only one exact accommodation case. Would add accommodations counting select by Date (with DatePicker in the view part, and fetching from server).
+4) Would add input mask to RoomsCount
+5) Would add a Print version with downloads in PDF
+6) Other things like Authorization/Localization/RTL version.
