@@ -4,12 +4,7 @@ export function convertPositiveInteger(val = "", oldValue) {
   }
   
   const value = +(val);
-
-  if (!Number.isInteger(value)) {
-    return oldValue;
-  }
-
-  if (value < 0) {
+  if (!Number.isInteger(value) || value < 0) {
     return oldValue;
   }
 

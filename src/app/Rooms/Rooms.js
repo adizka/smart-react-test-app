@@ -7,6 +7,16 @@ export function Rooms({
   premiumRoomsCount,
   setPremiumRoomsCount,
 }) {
+  /* Reason of not using generic handlers => we are checking entering numbers first
+   *
+   * Source:
+   * https://medium.com/front-end-weekly/react-quick-tip-easy-data-binding-with-a-generic-onchange-handler-fb0254a7094e
+   * Generic onChange handler is great when you just need to update state whenever the text field value changes,
+   * but it becomes less suitable when more functionality is needed for specific fields.
+   * if you need to validate the format of an email address, or check the strength of a password,
+   * custom handlers for those fields might be a more suitable solution.
+   *
+   */
   const handleEconomyRoomsCountChange = (event) => {
     const val = convertPositiveInteger(event.target.value, economyRoomsCount);
     setEconomyRoomsCount(val);
