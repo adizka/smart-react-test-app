@@ -1,12 +1,7 @@
 import React from "react";
 
 function getBadgeCssClassesByType(type) {
-  let result = "badge";
-  const classes = type.split("-");
-  classes.forEach((cl) => {
-    result = `${result} badge-${cl}`;
-  });
-  return result;
+  return type.split("-").reduce((acc, item) => `${acc} badge-${item}`, "badge");
 }
 
 export function Badge({ type, value }) {
