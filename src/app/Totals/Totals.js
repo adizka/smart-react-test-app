@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export function Totals({ economyTotal = 0, premiumTotal = 0 }) {
+function Totals({ economyTotal = 0, premiumTotal = 0 }) {
   return (
     <>
       <div className="room__row">
@@ -37,3 +38,11 @@ export function Totals({ economyTotal = 0, premiumTotal = 0 }) {
     </>
   );
 }
+
+
+Totals.propTypes = {
+  economyTotal: PropTypes.number.isRequired,
+  premiumTotal: PropTypes.number.isRequired
+}
+
+export {Totals};

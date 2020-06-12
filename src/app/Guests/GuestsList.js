@@ -1,7 +1,8 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import { Badge } from "../../_components/Badge";
 
-export function GuestsList({ guests, title }) {
+function GuestsList({ guests, title }) {
   const id = useMemo(Math.random, []);
 
   return (
@@ -19,3 +20,10 @@ export function GuestsList({ guests, title }) {
     </div>
   );
 }
+
+GuestsList.propTypes = {
+  guests: PropTypes.array,
+  title: PropTypes.string,
+};
+
+export { GuestsList };

@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { convertPositiveInteger } from "../../_helpers/TypeConvertion";
 
-export function Rooms({
+function Rooms({
   economyRoomsCount,
   setEconomyRoomsCount,
   premiumRoomsCount,
@@ -77,3 +78,12 @@ export function Rooms({
     </div>
   );
 }
+
+Rooms.propTypes = {
+  economyRoomsCount: PropTypes.number.isRequired,
+  setEconomyRoomsCount: PropTypes.func.isRequired,
+  premiumRoomsCount: PropTypes.number.isRequired,
+  setPremiumRoomsCount: PropTypes.func.isRequired,
+};
+
+export { Rooms };

@@ -5,6 +5,7 @@ import React, {
   useEffect,
   useContext,
 } from "react";
+import PropTypes from "prop-types";
 import { calculateOptimalAccommodation } from "../_core/accommodationCalculation";
 import { fetchData } from "../_core/guestsPricesServiсe";
 
@@ -71,6 +72,15 @@ const AppProvider = ({ children, value = init }) => {
   }, []);
 
   return <AppContext.Provider value={ctx}>{children}</AppContext.Provider>;
+};
+
+AppProvider.propTypes = {
+  children: PropTypes.node,
+  value: PropTypes.object,
+};
+
+AppProvider.defaultProps = {
+  value: init,
 };
 
 export { AppContext, AppProvider, useAppContext };

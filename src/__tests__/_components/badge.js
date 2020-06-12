@@ -6,7 +6,7 @@ import { Badge } from "../../_components/Badge";
 test("render badge", () => {
   const type = GUESTS_TYPES.premiumDisabled;
   const { getByRole } = render(
-    <Badge type={type} value="40" />
+    <Badge type={type} value={40} />
   );
 
   const component = getByRole("listitem");
